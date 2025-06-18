@@ -5,17 +5,78 @@
   <title>vncuu Twitch Stream</title>
   <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <style>
-    body { margin: 0; background: #000; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+    }
     #twitch-embed {
       width: 100vw;
-      height: 100vh;
+      height: 90vh;
+    }
+    .footer {
+      padding: 1rem;
+      text-align: center;
+      background: #111;
+    }
+    .footer a {
+      color: #00aaff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    #requestForm {
+      display: none;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 2rem;
+      text-align: center;
+    }
+    input {
+      display: block;
+      margin: 0.5rem auto;
+      padding: 0.5rem;
+      width: 80%;
+      max-width: 400px;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      margin-top: 1rem;
+    }
+    .confirmation {
+      color: #00ff99;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
+
+  <!-- Auto-loaded Twitch Stream -->
   <div id="twitch-embed"></div>
 
+  <!-- Footer link -->
+  <div class="footer">
+    <a onclick="document.getElementById('requestForm').style.display = 'block'">
+      Want to stream here? Request access
+    </a>
+  </div>
+
+  <!-- Request Form -->
+  <div id="requestForm">
+    <h2>Request to Stream on This Site</h2>
+    <input type="text" id="channelName" placeholder="Your Twitch Channel Name" required />
+    <input type="url" id="channelLink" placeholder="Full Link to Your Channel (https://...)" required />
+    <input type="number" id="followerCount" placeholder="How many followers do you have?" required />
+    <button onclick="submitRequest()">Submit Request</button>
+    <div class="confirmation" id="confirmationMessage"></div>
+  </div>
+
   <script>
+    // Auto-load the 'vncuu' stream
     new Twitch.Embed("twitch-embed", {
       width: "100%",
       height: "100%",
@@ -24,6 +85,23 @@
       autoplay: true,
       parent: [window.location.hostname]
     });
+
+    // Fake submit function (just shows confirmation)
+    function submitRequest() {
+      const name = document.getElementById('channelName').value.trim();
+      const link = document.getElementById('channelLink').value.trim();
+      const followers = document.getElementById('followerCount').value.trim();
+
+      if (!name || !link || !followers) {
+        alert('Please fill out all fields.');
+        return;
+      }
+
+      // Show a confirmation (replace with real submission logic later)
+      document.getElementById('confirmationMessage').textContent = 
+        `Thanks ${name}, your request has been received! We'll review your channel soon.`;
+    }
   </script>
+
 </body>
 </html>
