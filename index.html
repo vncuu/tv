@@ -110,22 +110,9 @@
     </div>
   </div>
 
-  <div class="footer">
-    <a onclick="document.getElementById('requestForm').style.display = 'block'">
-      Want to stream here? Request access
-    </a>
-  </div>
+<a href="form.html">Want to stream here? Request access</a>
 
-  <div id="requestForm">
-    <h2>Request to Stream on This Site</h2>
-    <input type="text" id="channelName" placeholder="Your Twitch Channel Name" required />
-    <input type="url" id="channelLink" placeholder="Full Link to Your Channel (https://...)" required />
-    <input type="number" id="followerCount" placeholder="How many followers do you have?" required />
-    <button onclick="submitRequest()">Submit Request</button>
-    <div class="confirmation" id="confirmationMessage"></div>
-  </div>
-
-  <script>
+<script>
     // List of Twitch usernames to cycle through
     const channels = ['vncuu', 'shroud', 'pokimane'];
     let currentIndex = 0;
