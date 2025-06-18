@@ -1,90 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Risetopia Login</title>
+  <meta charset="UTF-8">
+  <title>Twitch Stream Viewer</title>
+  <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; }
-    input, button { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
-    #logoutBtn { display: none; }
-    #status { margin-top: 20px; font-weight: bold; }
+    body { font-family: Arial, sans-serif; text-align: center; padding: 2rem; }
+    .stream-container { margin-top: 2rem; }
+    #twitch-embed { width: 80%; height: 500px; margin: 0 auto; }
+    .button-container { margin: 1rem 0; }
+    button {
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <h2>Login to Risetopia</h2>
+  <h1>Twitch Stream Viewer</h1>
 
-  <input type="email" id="email" placeholder="Email" />
-  <input type="password" id="password" placeholder="Password" />
+  <div class="button-container">
+    <button onclick="loadStream('YaskaTV')">Shroud</button>
+    <button onclick="loadStream('Madney11')">xQc</button>
+    <button onclick="loadStream('pokimane')">Pokimane</button>
+  </div>
 
-  <button id="loginBtn">Login</button>
-  <button id="logoutBtn">Logout</button>
+  <div class="stream-container" id="stream-container">
+    <!-- Twitch player will be injected here -->
+    <div id="twitch-embed"></div>
+  </div>
 
-  <div id="status">Not logged in</div>
+  <script>
+    let currentPlayer;
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAOaULLFRJPWko_rVuJqhugCDi8wJzl1WE",
-      authDomain: "rise-80783.firebaseapp.com",
-      projectId: "rise-80783",
-      storageBucket: "rise-80783.firebasestorage.app",
-      messagingSenderId: "569657077839",
-      appId: "1:569657077839:web:2fe104e4a7f00b7226fa3a",
-      measurementId: "G-DW52DVE31M"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
-    const status = document.getElementById('status');
-
-    onAuthStateChanged(auth, user => {
-      if (user) {
-        status.textContent = `Logged in as: ${user.email}`;
-        loginBtn.style.display = 'none';
-        logoutBtn.style.display = 'block';
-        emailInput.style.display = 'none';
-        passwordInput.style.display = 'none';
-      } else {
-        status.textContent = 'Not logged in';
-        loginBtn.style.display = 'block';
-        logoutBtn.style.display = 'none';
-        emailInput.style.display = 'block';
-        passwordInput.style.display = 'block';
+    function loadStream(channelName) {
+      if (currentPlayer) {
+        document.getElementById('twitch-embed').innerHTML = '';
       }
-    });
 
-    loginBtn.addEventListener('click', () => {
-      const email = emailInput.value;
-      const password = passwordInput.value;
-      if (!email || !password) {
-        alert('Please enter email and password.');
-        return;
-      }
-      signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          alert('Logged in successfully!');
-        })
-        .catch(error => {
-          alert('Login failed: ' + error.message);
-        });
-    });
-
-    logoutBtn.addEventListener('click', () => {
-      signOut(auth)
-        .then(() => {
-          alert('Logged out!');
-        })
-        .catch(error => {
-          alert('Logout failed: ' + error.message);
-        });
-    });
+      currentPlayer = new Twitch.Embed("twitch-embed", {
+        width: "100%",
+        height: 500,
+        channel: channelName,
+        layout: "video",
+        autoplay: true,
+        parent: [window.location.hostname]
+      });
+    }
   </script>
 </body>
 </html>
