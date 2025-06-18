@@ -57,9 +57,12 @@
   <h1>Request to Stream on Knights TV</h1>
 
   <form id="requestForm">
+    <input type="text" id="channelEmail" placeholder="Your Email" required />
     <input type="text" id="channelName" placeholder="Your Twitch Channel Name" required />
     <input type="url" id="channelLink" placeholder="Full Link to Your Channel (https://...)" required />
     <input type="number" id="followerCount" placeholder="How many followers do you have?" required />
+    <small style="color:#ccc; font-style: italic; display: block; margin-bottom: 1rem;">
+    Please make sure all details are correct and be patient about the approval
     <button type="submit">Submit Request</button>
     <div class="confirmation" id="confirmationMessage"></div>
   </form>
