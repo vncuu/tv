@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Risetopia Login</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 400px; margin: 50px auto; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; font-size: 16px; }
+    #logoutBtn { display: none; }
+    #status { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Login to Risetopia</h2>
+
+  <input type="email" id="email" placeholder="Email" />
+  <input type="password" id="password" placeholder="Password" />
+
+  <button id="loginBtn">Login</button>
+  <button id="logoutBtn">Logout</button>
+
+  <div id="status">Not logged in</div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAOaULLFRJPWko_rVuJqhugCDi8wJzl1WE",
+      authDomain: "rise-80783.firebaseapp.com",
+      projectId: "rise-80783",
+      storageBucket: "rise-80783.firebasestorage.app",
+      messagingSenderId: "569657077839",
+      appId: "1:569657077839:web:2fe104e4a7f00b7226fa3a",
+      measurementId: "G-DW52DVE31M"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const status = document.getElementById('status');
+
+    onAuthStateChanged(auth, user => {
+      if (user) {
+        status.textContent = `Logged in as: ${user.email}`;
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'block';
+        emailInput.style.display = 'none';
+        passwordInput.style.display = 'none';
+      } else {
+        status.textContent = 'Not logged in';
+        loginBtn.style.display = 'block';
+        logoutBtn.style.display = 'none';
+        emailInput.style.display = 'block';
+        passwordInput.style.display = 'block';
+      }
+    });
+
+    loginBtn.addEventListener('click', () => {
+      const email = emailInput.value;
+      const password = passwordInput.value;
+      if (!email || !password) {
+        alert('Please enter email and password.');
+        return;
+      }
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+          alert('Logged in successfully!');
+        })
+        .catch(error => {
+          alert('Login failed: ' + error.message);
+        });
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      signOut(auth)
+        .then(() => {
+          alert('Logged out!');
+        })
+        .catch(error => {
+          alert('Logout failed: ' + error.message);
+        });
+    });
+  </script>
+</body>
+</html>
