@@ -2,52 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Twitch Stream Viewer</title>
+  <title>vncuu Twitch Stream</title>
   <script src="https://embed.twitch.tv/embed/v1.js"></script>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding: 2rem; }
-    .stream-container { margin-top: 2rem; }
-    #twitch-embed { width: 80%; height: 500px; margin: 0 auto; }
-    .button-container { margin: 1rem 0; }
-    button {
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
-      font-size: 1rem;
-      cursor: pointer;
+    body { margin: 0; background: #000; }
+    #twitch-embed {
+      width: 100vw;
+      height: 100vh;
     }
   </style>
 </head>
 <body>
-  <h1>Twitch Stream Viewer</h1>
-
-  <div class="button-container">
-    <button onclick="loadStream('YaskaTV')">Shroud</button>
-    <button onclick="loadStream('Madney11')">xQc</button>
-    <button onclick="loadStream('pokimane')">Pokimane</button>
-  </div>
-
-  <div class="stream-container" id="stream-container">
-    <!-- Twitch player will be injected here -->
-    <div id="twitch-embed"></div>
-  </div>
+  <div id="twitch-embed"></div>
 
   <script>
-    let currentPlayer;
-
-    function loadStream(channelName) {
-      if (currentPlayer) {
-        document.getElementById('twitch-embed').innerHTML = '';
-      }
-
-      currentPlayer = new Twitch.Embed("twitch-embed", {
-        width: "100%",
-        height: 500,
-        channel: channelName,
-        layout: "video",
-        autoplay: true,
-        parent: [window.location.hostname]
-      });
-    }
+    new Twitch.Embed("twitch-embed", {
+      width: "100%",
+      height: "100%",
+      channel: "vncuu",
+      layout: "video",
+      autoplay: true,
+      parent: [window.location.hostname]
+    });
   </script>
 </body>
 </html>
