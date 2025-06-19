@@ -140,7 +140,7 @@ html, body {
     width: 75px;
 }
 
-/* --- Rise Dishonored Specific Styles --- */
+/* --- Rise Dishonored Specific Styles (risendishonored.html) --- */
 /* Main Content (Hero Section) */
 .top {
     margin-top: 0px; /* Pushes it down past the fixed navbar */
@@ -530,11 +530,122 @@ input:focus {
     background-color: hsla(0, 56%, 50%, 0.95); /* Lighter red on hover */
 }
 
-
 .confirmation {
     margin-top: 1.5rem;
     font-weight: bold;
     text-align: center;
+}
+
+/* --- About Page Specific Styles (about.html) --- */
+.content-section.about-page {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align content to the top */
+    padding: 2rem;
+    padding-top: 120px; /* Adjust padding for fixed navbar */
+    color: white;
+    width: 100%;
+    max-width: 900px; /* Max width for content */
+    margin: 0 auto; /* Center the content */
+    line-height: 1.6;
+    text-align: left;
+}
+
+.content-section.about-page h1 {
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    width: 100%;
+}
+
+.content-section.about-page h2 {
+    font-size: 2em;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #00aaff; /* Blue like your buttons */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    text-align: left;
+}
+
+.content-section.about-page p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #ddd;
+    text-align: left;
+}
+
+.content-section.about-page .game-details ul,
+.content-section.about-page .external-links ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    width: 100%;
+}
+
+.content-section.about-page .game-details li,
+.content-section.about-page .external-links li {
+    background-color: hsla(197, 64%, 23%, 0.7); /* Dark blue, slightly transparent */
+    margin-bottom: 10px;
+    padding: 12px 20px;
+    border-radius: 5px;
+    border: 1px solid hsla(197, 64%, 40%, 0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.content-section.about-page .game-details li strong {
+    color: #bbe5ff; /* Lighter blue for key terms */
+    min-width: 120px; /* Ensure alignment for details */
+    margin-right: 10px;
+}
+
+.content-section.about-page .game-details ul ul { /* For nested language list */
+    padding-left: 20px;
+    margin-top: 5px;
+    background: none;
+    border: none;
+    display: block;
+}
+.content-section.about-page .game-details ul ul li {
+    background: none;
+    border: none;
+    padding: 5px 0;
+    margin-bottom: 0;
+}
+
+.content-section.about-page .external-links a {
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.content-section.about-page .external-links a:hover {
+    color: #0088cc;
+    text-decoration: underline;
+}
+
+.content-section.about-page .notes {
+    background-color: hsla(0, 56%, 40%, 0.2); /* Slightly red for 'notes' */
+    border: 1px solid hsla(0, 56%, 40%, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+}
+
+.content-section.about-page .notes p {
+    color: #ffcccc; /* Lighter red for notes text */
+    font-style: italic;
+    font-size: 1em;
+    margin-bottom: 10px;
 }
 
 /* Footer (consistent across all pages) */
