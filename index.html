@@ -1,137 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Knights TV</title>
-  <script src="https://embed.twitch.tv/embed/v1.js"></script>
+    <meta charset="UTF-8" />
+    <title>Knights TV</title>
+    <link rel="stylesheet" href="css/knightstv.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
-    <!-- Meta Title -->
     <meta property="og:title" content="Knights TV">
-    <!-- Meta Description -->
     <meta property="og:description" content="The Best Place to watch Rise Dishonored Streams with High Resolution, Dedicated for Full Screen, Low latency. Fast redirects and social links for everyone. Contributors accessable and usable to promote both Rise Dishonored and the current Streamers playing the game">
-    <!-- Meta Image (The image to display in Discord embeds) -->
     <meta property="og:image" content="https://media.discordapp.net/attachments/1352346206528868383/1372914925415956530/kiroshi.gif?ex=685403a9&is=6852b229&hm=fd4bda642535bc3b683d68184157b00b1413de599ad24616a23fed733a198aa3&=">
-    <!-- Meta URL for the page -->
     <meta property="og:url" content="https://knightstv.live">
-    <!-- Meta Type for social media sharing -->
     <meta property="og:type" content="website">
-    <!-- Meta Color for the browser's theme color -->
     <meta name="theme-color" content="#bbe5ff">
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #000;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-    }
-    #player-container {
-      flex-grow: 1;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: black;
-    }
-    #twitch-embed {
-      width: 80vw;
-      height: 80vh;
-      max-width: 1280px;
-      max-height: 720px;
-    }
-    .nav-buttons {
-      position: absolute;
-      top: 50%;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-      transform: translateY(-50%);
-    }
-    button {
-      pointer-events: auto;
-      background-color: rgba(0, 170, 255, 0.7);
-      border: none;
-      color: white;
-      font-size: 2rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      user-select: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
-    }
-    button:hover {
-      background-color: rgba(0, 170, 255, 1);
-    }
- .footer {
-  padding: 1rem;
-  background: #111;
-  flex-shrink: 0;
-  text-align: center;
-  font-size: 16px; /* bigger font size */
-}
-
-    .footer a {
-      color: #00aaff;
-      text-decoration: underline;
-      cursor: pointer;
-      font-weight: bold;
-    }
-  </style>
 </head>
 <body>
+    <section class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/winton.gif" alt="Logo">
+                <div class="drop" id="menuDrop">↓</div>
+            </div>
 
-  <div id="player-container">
-    <div id="twitch-embed"></div>
-    <div class="nav-buttons">
-      <button id="prevBtn" aria-label="Previous Stream">&lt;</button>
-      <button id="nextBtn" aria-label="Next Stream">&gt;</button>
+            <div class="dropdown-menu" id="dropdownMenu">
+                <ul>
+                    <li><a href="#streams">Streams</a></li>
+                    <li><a href="#about">About Knights TV</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html">Rise Dishonored Home</a></li>
+                </ul>
+            </div>
+
+            <nav>
+                <ul id="navbar-main">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Redeem</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </nav>
+
+            <div class="empty"></div>
+            <div id="discord">
+                <a href="https://discord.gg/DAXbU23nda">
+                    <img src="images/discord.png" alt="Discord" style="width: 50px; height: auto;">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div id="player-container">
+        <div id="twitch-embed"></div>
+        <div class="nav-buttons">
+            <button id="prevBtn" aria-label="Previous Stream">&lt;</button>
+            <button id="nextBtn" aria-label="Next Stream">&gt;</button>
+        </div>
     </div>
-  </div>
 
-  <div class="footer">
-    <a href="form.html">Want to stream here? Request access</a>
-  </div>
+    <div class="footer">
+        <a href="form.html">Want to stream here? Request access</a>
+    </div>
 
-  <script>
-    // List of Twitch usernames to cycle through
-    const channels = ['vncuu', 'vncuu', 'vncuu'];
-    let currentIndex = 0;
-    let currentPlayer;
+    <script>
+        const channels = ['vncuu', 'riotgames', 'summit1g']; // Example channels, you had 'vncuu' repeated
+        let currentIndex = 0;
+        let currentPlayer;
 
-    // Function to load a Twitch channel embed
-    function loadStream(channel) {
-      if (currentPlayer) {
-        // Remove previous embed iframe container
-        document.getElementById('twitch-embed').innerHTML = '';
-      }
-      currentPlayer = new Twitch.Embed("twitch-embed", {
-        width: "100%",
-        height: "100%",
-        channel: channel,
-        layout: "video",
-        autoplay: true,
-        parent: [window.location.hostname]
-      });
-    }
+        function loadStream(channel) {
+            if (currentPlayer) {
+                document.getElementById('twitch-embed').innerHTML = '';
+            }
+            currentPlayer = new Twitch.Embed("twitch-embed", {
+                width: "100%",
+                height: "100%",
+                channel: channel,
+                layout: "video",
+                autoplay: true,
+                parent: [window.location.hostname]
+            });
+        }
 
-    // Load the first stream on page load
-    loadStream(channels[currentIndex]);
+        loadStream(channels[currentIndex]);
 
-    // Event listeners for buttons
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + channels.length) % channels.length;
-      loadStream(channels[currentIndex]);
-    });
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + channels.length) % channels.length;
+            loadStream(channels[currentIndex]);
+        });
 
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % channels.length;
-      loadStream(channels[currentIndex]);
-    });
-  </script>
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % channels.length;
+            loadStream(channels[currentIndex]);
+        });
 
+        // Dropdown menu toggle
+        const menuDrop = document.getElementById('menuDrop');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        menuDrop.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!menuDrop.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
 </body>
 </html>
