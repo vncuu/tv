@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>About Rise Dishonored</title>
+    <link rel="stylesheet" href="css/style.css"> <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
 
+    <meta property="og:title" content="About Rise Dishonored">
+    <meta property="og:description" content="Discover Rise Dishonored: an action-adventure game for knightly battles and honor. Developed by Risetopia and Ra's Vision, published by Krill Studio.">
+    <meta property="og:image" content="https://media.discordapp.net/attachments/1352346206528868383/1372914925415956530/kiroshi.gif?ex=685403a9&is=6852b229&hm=fd4bda642535bc3b683d68184157b00b1413de599ad24616a23fed733a198aa3&=">
+    <meta property="og:url" content="https://knightstv.live/about.html">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#bbe5ff">
+</head>
+<body>
+    <section class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="images/winton.gif" alt="Logo">
+                <div class="drop" id="menuDrop">↓</div>
+            </div>
+
+            <div class="dropdown-menu" id="dropdownMenu">
+                <ul>
+                    <li><a href="index.html#streams">Knights TV Streams</a></li>
+                    <li><a href="index.html#about">About Knights TV</a></li>
+                    <li><a href="form.html">Stream Request Form</a></li>
+                    <li><a href="risendishonored.html">Rise Dishonored Home</a></li>
+                </ul>
+            </div>
+
+            <nav>
+                <ul id="navbar-main">
+                    <li><a href="index.html">Knights TV Home</a></li>
+                    <li><a href="risendishonored.html">Rise Dishonored</a></li>
+                    <li><a href="#">Redeem</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </nav>
+
+            <div class="empty"></div>
+            <div id="discord">
+                <a href="https://discord.gg/DAXbU23nda">
+                    <img src="images/discord.png" alt="Discord" style="width: 50px; height: auto;">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="content-section about-page">
+        <h1>About Rise Dishonored</h1>
+
+        <p>
+            **Rise Dishonored** is an action-adventure game crafted for those with an eye for grand knightly adventures and honorable battles. Prepare yourself for a life steeped in the valor of knights and the majesty of kingdoms; fight for steel and blood. Prove yourself trustworthy and carve your legend.
+        </p>
+
+        <div class="game-details">
+            <h2>Game Details</h2>
+            <ul>
+                <li>**Genre:** Adventure, Indie</li>
+                <li>**Developer:** Risetopia, Ra's Vision</li>
+                <li>**Publisher:** Krill Studio</li>
+                <li>**Player Modes:** Single-player, PvP (Online), PvP (Shared/Split Screen), Co-op (Online), Co-op (Shared/Split Screen)</li>
+                <li>**Features:** Cross-Platform Multiplayer, Steam Achievements, In-App Purchases, Steam Cloud, Family Sharing</li>
+                <li>**Controller Support:** Full controller support (Xbox, PlayStation, Steam Input API)</li>
+                <li>**Anti-Cheat:** Utilizes OS kernel-level anti-cheat (BattlEye)</li>
+                <li>**Languages:**
+                    <ul>
+                        <li>**Interface:** Bulgarian, English, Russian, Spanish - Spain</li>
+                        <li>**Audio:** Bulgarian, English, Russian, Spanish - Spain</li>
+                        <li>**Subtitles:** English, Spanish - Spain</li>
+                    </ul>
+                </li>
+                <li>**Content Warning:** Contains Violence, Alcohol, Nudity, Blood, Strong Language, Online Play</li>
+                <li>**Interactive Elements:** In-game Purchases, In-game Chat</li>
+                <li>**PEGI Age Rating:** (Specific rating not provided, but content is listed)</li>
+            </ul>
+        </div>
+
+        <div class="external-links">
+            <h2>Connect with Rise Dishonored</h2>
+            <ul>
+                <li><a href="https://store.steampowered.com/" target="_blank">Steam Store Page</a></li>
+                <li><a href="https://your-official-website.com" target="_blank">Official Website</a></li> <li><a href="https://discord.gg/DAXbU23nda" target="_blank">Discord Community</a></li>
+                <li><a href="https://instagram.com/your-instagram" target="_blank">Instagram</a></li> </ul>
+        </div>
+
+        <div class="notes">
+            <h2>Current Status</h2>
+            <p>
+                There are no user reviews yet. Rise Dishonored is already in your Steam library.
+                Install Steam to play now.
+            </p>
+            <p>
+                **Steam Deck Compatibility:** Unknown. Learn more on Steam.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>© Risetopia & Krill Studios</p>
+    </div>
+
+    <script>
+        // Dropdown menu toggle
+        const menuDrop = document.getElementById('menuDrop');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        menuDrop.addEventListener('click', () => {
+            dropdownMenu.classList.toggle('show');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (event) => {
+            if (!menuDrop.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
